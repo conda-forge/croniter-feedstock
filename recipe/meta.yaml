@@ -1,8 +1,8 @@
 {% set name = "croniter" %}
-{% set version = "0.3.29" %}
+{% set version = "0.3.30" %}
 {% set bundle = "tar.gz" %}
 {% set hash_type = "sha256" %}
-{% set hash = "66b6a9c6b2d1a85d4af51453b2328be775a173e688b69eb3a96a7ec752ba77a3" %}
+{% set hash = "538adeb3a7f7816c3cdec6db974c441620d764c25ff4ed0146ee7296b8a50590" %}
 
 package:
   name: {{ name }}
@@ -43,3 +43,4 @@ about:
 extra:
   recipe-maintainers:
     - pmlandwehr
+    - mariusvniekerk
