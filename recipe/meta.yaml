@@ -1,8 +1,8 @@
 {% set name = "croniter" %}
-{% set version = "0.3.30" %}
+{% set version = "0.3.31" %}
 {% set bundle = "tar.gz" %}
 {% set hash_type = "sha256" %}
-{% set hash = "538adeb3a7f7816c3cdec6db974c441620d764c25ff4ed0146ee7296b8a50590" %}
+{% set hash = "8984b4b27ddfc4b95b2bcec17ee31f827426cf1d717c2af79eff4b4435e23197" %}
 
 package:
   name: {{ name }}
@@ -17,7 +17,7 @@ build:
   noarch: python
   preserve_egg_dir: True
   number: 0
-  script: python -m pip install --no-deps --ignore-installed .
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   build:
