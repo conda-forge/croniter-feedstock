@@ -1,8 +1,7 @@
 {% set name = "croniter" %}
-{% set version = "0.3.30" %}
+{% set version = "0.3.32" %}
 {% set bundle = "tar.gz" %}
-{% set hash_type = "sha256" %}
-{% set hash = "538adeb3a7f7816c3cdec6db974c441620d764c25ff4ed0146ee7296b8a50590" %}
+{% set hash = "0d5bf45f12861c1b718c51bd6e2ab056da94e651bf22900658421cdde0ff7088" %}
 
 package:
   name: {{ name }}
@@ -11,13 +10,13 @@ package:
 source:
   fn: {{ name }}-{{ version }}.{{ bundle }}
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ bundle }}
-  {{ hash_type }}: {{ hash }}
+  sha256: {{ hash }}
 
 build:
   noarch: python
-  preserve_egg_dir: True
+  preserve_egg_dir: true
   number: 0
-  script: python -m pip install --no-deps --ignore-installed .
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   build:
@@ -37,7 +36,7 @@ about:
   home: https://github.com/kiorky/croniter
   license: MIT
   license_family: MIT
-  summary: 'croniter provides iteration for datetime object with cron like format'
+  summary: croniter provides iteration for datetime object with cron like format
   dev_url: https://github.com/kiorky/croniter
 
 extra:
