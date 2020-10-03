@@ -5,7 +5,7 @@ Home: https://github.com/kiorky/croniter
 
 Package license: MIT
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: croniter provides iteration for datetime object with cron like format
 
@@ -116,6 +116,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@bollwyvl](https://github.com/bollwyvl/)
 * [@mariusvniekerk](https://github.com/mariusvniekerk/)
 * [@pmlandwehr](https://github.com/pmlandwehr/)
 
