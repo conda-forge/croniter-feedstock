@@ -1,46 +1,51 @@
 {% set name = "croniter" %}
-{% set version = "0.3.30" %}
-{% set bundle = "tar.gz" %}
-{% set hash_type = "sha256" %}
-{% set hash = "538adeb3a7f7816c3cdec6db974c441620d764c25ff4ed0146ee7296b8a50590" %}
+{% set version = "0.3.34" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.{{ bundle }}
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ bundle }}
-  {{ hash_type }}: {{ hash }}
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 7186b9b464f45cf3d3c83a18bc2344cc101d7b9fd35a05f2878437b14967e964
 
 build:
   noarch: python
-  preserve_egg_dir: True
   number: 0
-  script: python -m pip install --no-deps --ignore-installed .
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-  build:
+  host:
     - python
     - pip
-
   run:
     - python
     - python-dateutil
+    - natsort
 
 test:
+  requires:
+    - pip
+    - pytest
+    - pytest-cov
+    - pytz
+    - tzlocal
   imports:
     - croniter
-    - croniter.tests
+  commands:
+    - python -m pip check
+    - python -m pytest --pyargs croniter --cov croniter --cov-fail-under 86
 
 about:
   home: https://github.com/kiorky/croniter
   license: MIT
   license_family: MIT
-  summary: 'croniter provides iteration for datetime object with cron like format'
+  license_file: mit.txt
+  summary: croniter provides iteration for datetime object with cron like format
   dev_url: https://github.com/kiorky/croniter
 
 extra:
   recipe-maintainers:
     - pmlandwehr
     - mariusvniekerk
+    - bollwyvl
