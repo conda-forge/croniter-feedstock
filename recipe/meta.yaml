@@ -40,7 +40,6 @@ test:
     - croniter
   commands:
     - python -m pip check
-    - cd src/src/croniter && python -m pytest --cov croniter --cov-fail-under 86
 
 about:
   home: https://github.com/kiorky/croniter
