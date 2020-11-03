@@ -1,29 +1,35 @@
 {% set name = "croniter" %}
-{% set version = "0.3.35" %}
+{% set version = "0.3.36" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: b9075573d9d18fdc4c67ad6741c4bfa4b446b1b1d7f03279757244c8a75abedf
+  - folder: dist
+    url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    sha256: 9d3098e50f7edc7480470455d42f09c501fa1bb7e2fc113526ec6e90b068f32c
+  - folder: src
+    url: https://github.com/taichino/{{ name }}/archive/{{ version }}.tar.gz
+    sha256: e1fbac7c8827a95bba05fa7fbd19e8c991e625197c892d1975f44f71b098869f
 
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: cd dist && {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
-    - python
+    - python >=2.6
     - pip
   run:
-    - python
+    - python >=2.6
     - python-dateutil
     - natsort
 
 test:
+  source_files:
+    - src/src/croniter/tests
   requires:
     - pip
     - pytest
@@ -34,13 +40,12 @@ test:
     - croniter
   commands:
     - python -m pip check
-    - python -m pytest --pyargs croniter --cov croniter --cov-fail-under 86
 
 about:
   home: https://github.com/kiorky/croniter
   license: MIT
   license_family: MIT
-  license_file: mit.txt
+  license_file: src/docs/LICENSE
   summary: croniter provides iteration for datetime object with cron like format
   dev_url: https://github.com/kiorky/croniter
 
