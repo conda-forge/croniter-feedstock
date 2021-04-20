@@ -27,7 +27,6 @@ test:
   requires:
     - coverage >=4.2
     - pip
-    - pytest
     - pytest >=3.0.3
     - pytest-cov
     - pytz
