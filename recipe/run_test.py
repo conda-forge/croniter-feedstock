@@ -6,10 +6,17 @@ from os.path import join
 import pytest
 
 
-TESTS = join(os.getcwd(), "src", "src", "croniter", "tests")
+TESTS = join(os.getcwd(), "src", "croniter", "tests")
 ABS_IMPORT = "from croniter.tests import"
-COV_THRESHOLD = "94"
-TEST_ARGS = [TESTS, "-vv", "--cov", "croniter", "--cov-fail-under", COV_THRESHOLD]
+COV_THRESHOLD = "92"
+TEST_ARGS = [
+    TESTS,
+    "-vv",
+    "--cov", "croniter",
+    "--no-cov-on-fail",
+    "--cov-report", "term-missing:skip-covered",
+    "--cov-fail-under", COV_THRESHOLD,
+]
 
 
 def patch_absolute_imports():
