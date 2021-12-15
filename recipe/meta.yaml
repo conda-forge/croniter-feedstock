@@ -33,6 +33,8 @@ test:
     - tzlocal
   imports:
     - croniter
+  commands:
+    - pip check
 
 about:
   home: https://github.com/kiorky/croniter
