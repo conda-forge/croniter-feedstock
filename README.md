@@ -120,5 +120,4 @@ Feedstock Maintainers
 
 * [@bollwyvl](https://github.com/bollwyvl/)
 * [@mariusvniekerk](https://github.com/mariusvniekerk/)
-* [@pmlandwehr](https://github.com/pmlandwehr/)
 
