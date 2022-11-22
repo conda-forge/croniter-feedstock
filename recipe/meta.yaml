@@ -40,7 +40,7 @@ about:
   home: https://github.com/kiorky/croniter
   license: MIT
   license_family: MIT
-  license_file: docs/LICENSE
+  license_file: LICENSE
   summary: croniter provides iteration for datetime object with cron like format
   dev_url: https://github.com/kiorky/croniter
 
