@@ -1,15 +1,12 @@
-{% set version = "2.0.0" %}
+{% set version = "2.0.1" %}
 
 package:
   name: croniter
   version: {{ version }}
 
 source:
-  - url: https://pypi.org/packages/source/c/croniter/croniter-{{ version }}.tar.gz
-    sha256: 92319e69477c467a9b3da615264c02fb183c1daf7ac8ea9790ca8f7a77ded69c
-  # TODO: remvoe after https://github.com/kiorky/croniter/pull/53
-  - url: https://raw.githubusercontent.com/kiorky/croniter/{{ version }}/LICENSE
-    sha256: a8f952e6c6bb30b0cfcf71c304e3931160d2a9b578d6eddfa5cc18c832e17ed3
+  url: https://pypi.org/packages/source/c/croniter/croniter-{{ version }}.tar.gz
+  sha256: d199b2ec3ea5e82988d1f72022433c5f9302b3b3ea9e6bfd6a1518f6ea5e700a
 
 build:
   noarch: python
