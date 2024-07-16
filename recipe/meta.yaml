@@ -1,4 +1,4 @@
-{% set version = "2.0.5" %}
+{% set version = "2.0.7" %}
 
 package:
   name: croniter
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/c/croniter/croniter-{{ version }}.tar.gz
-  sha256: f1f8ca0af64212fbe99b1bee125ee5a1b53a9c1b433968d8bca8817b79d237f3
+  sha256: 1041b912b4b1e03751a0993531becf77851ae6e8b334c9c76ffeffb8f055f53f
 
 build:
   noarch: python
