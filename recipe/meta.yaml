@@ -10,16 +10,16 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
-    - python >=3.7
+    - python {{ python_min }}
     - setuptools
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - python-dateutil
     - pytz >2021.1
 
@@ -32,6 +32,7 @@ test:
     - pytest >=3.0.3
     - pytest-cov
     - tzlocal
+    - python {{ python_min }}
   imports:
     - croniter
   commands:
