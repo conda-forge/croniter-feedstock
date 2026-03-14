@@ -1,40 +1,57 @@
-import os
+from subprocess import call
 import sys
-from glob import glob
-from os.path import join
+from typing import Any
+from pathlib import Path
 
-import pytest
+COV_FAIL_UNDER = 92
 
-
-TESTS = join(os.getcwd(), "src", "croniter", "tests")
+TESTS = Path.cwd() / "src/croniter/tests"
 ABS_IMPORT = "from croniter.tests import"
-COV_THRESHOLD = "92"
-TEST_ARGS = [
-    TESTS,
+REL_IMPORT = "from . import"
+COV_TEST = [
+    "coverage",
+    "run",
+    "-m",
+    "--source=croniter",
+    "--branch",
+    "pytest",
     "-vv",
-    "--cov", "croniter",
-    "--no-cov-on-fail",
-    "--cov-report", "term-missing:skip-covered",
-    "--cov-fail-under", COV_THRESHOLD,
+    "--tb=long",
+    "--color=yes",
+]
+COV_REPORT = [
+    "coverage",
+    "report",
+    "--show-missing",
+    "--skip-covered",
+    f"--fail-under={COV_FAIL_UNDER}",
 ]
 
 
-def patch_absolute_imports():
-    for test in glob(join(TESTS, "*.py")):
+def patch_absolute_imports() -> int:
+    ok = patched = 0
+    tests = sorted(TESTS.glob("*.py"))
+    for test in tests:
         with open(test) as fp:
             test_src = fp.read()
 
         if ABS_IMPORT in test_src:
             with open(test, "w") as fp:
-                fp.write(test_src.replace(ABS_IMPORT, "from . import"))
-            print("rewrote absolute import in {}".format(test))
+                fp.write(test_src.replace(ABS_IMPORT, REL_IMPORT))
+            print("\n\t- rewrote absolute import in {}".format(test))
+            patched += 1
+        else:
+            print(".", end="")
+            ok += 1
+    print(f"{patched} patched, {ok} ok", flush=True)
+    return 0 if patched else ok
 
 
-def run_tests():
-    return pytest.main(TEST_ARGS)
-
+def do(args: list[Any]) -> int:
+    args = [*map(str, args)]
+    print(">>>", *args)
+    return call(args)
 
 
 if __name__ == "__main__":
-    patch_absolute_imports()
-    sys.exit(run_tests())
+    sys.exit(patch_absolute_imports() or do(COV_TEST) or do(COV_REPORT))

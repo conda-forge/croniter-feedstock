@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 6.1.0
+  python_check_max: "3.14"
+
+package:
+  name: croniter
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/c/croniter/croniter-${{ version }}.tar.gz
+  sha256: 3294a17cf9b58d50350d87d2874c7f66752df5cb071b7b35a0be853f5ec121fc
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - flit-core >=3.2,<4
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - python-dateutil
+
+tests:
+  - python:
+      imports: croniter
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - files:
+      source:
+        - src/croniter/tests/
+    requirements:
+      run:
+        - pytest-cov
+        - tzlocal
+        - python ${{ python_min }}
+    script:
+      file: run_test.py
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: croniter provides iteration for datetime object with cron like format
+  homepage: https://github.com/kiorky/croniter
+  repository: https://github.com/kiorky/croniter
+
+extra:
+  recipe-maintainers:
+    - mariusvniekerk
+    - bollwyvl
