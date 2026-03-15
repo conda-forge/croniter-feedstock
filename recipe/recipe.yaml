@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: 6.2.0
+  version: 6.2.2
   python_check_max: "3.14"
 
 package:
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/c/croniter/croniter-${{ version }}.tar.gz
-  sha256: 89eef610b0356d08ba368463e69b2908d058a762bd78002859521fef76f3361f
+  sha256: ba60832a5ec8e12e51b8691c3309a113d1cf6526bdf1a48150ce8ec7a532d0ab
 
 build:
   number: 0
@@ -21,12 +21,16 @@ build:
 
 requirements:
   host:
-    - flit-core >=3.2,<4
-    - pip
-    - python ${{ python_min }}.*
+    - hatchling >=1.29.0
+    - packaging >=26.0
+    - pathspec >=1.0.4
+    - pluggy >=1.6.0
+    - trove-classifiers >=2026.1.14.14
   run:
     - python >=${{ python_min }}
     - python-dateutil
+    # undeclared and lazily imported
+    - pytz
 
 tests:
   - python:
@@ -39,7 +43,6 @@ tests:
       run:
         - pytest-cov
         - python ${{ python_min }}.*
-        - pytz
     script:
       - coverage run --source=croniter --branch -m pytest -vv --tb=long --color=yes --pyargs croniter
       - coverage report --show-missing --skip-covered --fail-under=92
@@ -48,8 +51,8 @@ about:
   license: MIT
   license_file: LICENSE
   summary: croniter provides iteration for datetime object with cron like format
-  homepage: https://github.com/kiorky/croniter
-  repository: https://github.com/kiorky/croniter
+  homepage: https://pypi.org/project/croniter
+  repository: https://github.com/pallets-eco/croniter
 
 extra:
   recipe-maintainers:
