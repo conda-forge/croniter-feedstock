@@ -3,13 +3,13 @@ About croniter-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/croniter-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/kiorky/croniter
+Home: https://pypi.org/project/croniter
 
 Package license: MIT
 
 Summary: croniter provides iteration for datetime object with cron like format
 
-Development: https://github.com/kiorky/croniter
+Development: https://github.com/pallets-eco/croniter
 
 Current build status
 ====================
