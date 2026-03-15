@@ -24,6 +24,7 @@ requirements:
     - hatchling >=1.29.0
     - packaging >=26.0
     - pathspec >=1.0.4
+    - pip
     - pluggy >=1.6.0
     - python ${{ python_min }}.*
     - trove-classifiers >=2026.1.14.14
