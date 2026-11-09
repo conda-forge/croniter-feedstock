@@ -3,14 +3,14 @@ schema_version: 1
 
 context:
   version: "7.0.0"
-  python_check_max: "3.14"
+  python_check_max: "3.15"
 
 package:
   name: croniter
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/c/croniter/croniter-${{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/c/croniter/croniter-${{ version }}.tar.gz
   sha256: a0b2568303c774f6a4ea2d4ce2e72b1ee911029c7070d64a1befe05cdb107f5a
 
 build:
@@ -21,13 +21,13 @@ build:
 
 requirements:
   host:
-    - hatchling >=1.29.0
+    - hatchling >=1.33.0
     - packaging >=26.0
-    - pathspec >=1.0.4
+    - pathspec >=1.1.1
     - pip
-    - pluggy >=1.6.0
+    - pluggy >=1.7.0
     - python ${{ python_min }}.*
-    - trove-classifiers >=2026.1.14.14
+    - trove-classifiers >=2026.9.21.13
   run:
     - python >=${{ python_min }}
     - python-dateutil
@@ -35,6 +35,11 @@ requirements:
     - pytz
 
 tests:
+  - package_contents:
+      strict: true
+      site_packages:
+        - croniter/**
+        - croniter-${{ version }}.dist-info/**
   - python:
       imports: croniter
       pip_check: true
