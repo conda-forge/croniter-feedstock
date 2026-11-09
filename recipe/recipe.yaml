@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "6.2.4"
+  version: "7.0.0"
   python_check_max: "3.14"
 
 package:
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/c/croniter/croniter-${{ version }}.tar.gz
-  sha256: fc124f751b1b04805c2a04b061898b436b45ab2320b045e1e052ea895de65189
+  sha256: a0b2568303c774f6a4ea2d4ce2e72b1ee911029c7070d64a1befe05cdb107f5a
 
 build:
   number: 0
